@@ -1,0 +1,82 @@
+extends master.html
+
+block append content
+  div(class="container card")
+    if article
+      h1(class="text-center") Article n° #{article._id} 
+    else
+      h1(class="text-center") Création d'un article
+
+    if edit && article
+      <form method="POST" enctype="multipart/form-data" action="/post/update">
+        <input type="hidden" name="id" value="#{article._id}">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Titre</label>
+              <input type="text" class="form-control" name="titre" aria-describedby="emailHelp" value="#{article.titre}" placeholder="Entrez le titre du livre">
+            </div>
+            <div class="form-group">
+              <label>Auteur</label>
+              <input type="text" class="form-control" name="auteur" value="#{article.auteur}" placeholder="Entrez le nom de l'auteur">
+            </div>
+            <div class="form-group">
+                <label>Résumé</label>
+                <textarea class="form-control" name="resume" rows="8">#{article.resume}</textarea>
+            </div>
+          </div>
+          <div class="col-md-4">
+              <img src="/uploads/#{article.image}" >
+              <input type="hidden" name ="old_image_upload" value="#{article.image}"/>
+              <input type="hidden" name="MAX_FILE_SIZE" value="99999999" />
+              <input name="image_upload" enctype="multipart/form-data" type="file" class="btn btn-default pull-left"/>
+              <!-- <input id="image" type="image" alt="Image" src="/uploads/#{article.image}"> -->
+              <!-- <input type="file" name="image_upload" value="#{article.image}"/> -->
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <a class="delete-article btn btn-danger" href="/post/delete/#{article._id}">Supprimer</a>
+      </form>
+    else if !article
+      <form method="POST" enctype="multipart/form-data" action="/post/save">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Titre</label>
+              <input required type="text" class="form-control" name="titre" aria-describedby="emailHelp" value="" placeholder="Entrez le titre du livre">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Auteur</label>
+              <input required type="text" name="auteur" class="form-control" value="" placeholder="Entrez le nom de l'auteur">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Résumé</label>
+              <textarea required class="form-control" name="resume" rows="8" placeholder="Entrez un résumé"></textarea>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <input required type="file" name="image_upload" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </form>
+    else
+      <table class="table">
+        <thead>
+          <th>Titre</th>
+          <th>Auteur</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr>
+              <td>#{article.titre}</td>
+              <td>#{article.auteur}</td>
+              <td>#{article.date}</td>
+              <td>
+                <a class="delete-article" href="/post/delete/#{article._id}">Supprimer</a>
+                <a href="/post/edit/#{article._id}">Modifier</a>
+              </td>
+            </tr>
+        </tbody>
+      </table>

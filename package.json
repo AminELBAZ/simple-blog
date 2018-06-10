@@ -10,7 +10,7 @@
   "keywords": [
     "blog"
   ],
-  "author": "xxx",
+  "author": "EL BAZ",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -19,6 +19,7 @@
     "express": "^4.16.3",
     "mocha": "^5.2.0",
     "mongodb": "^3.1.0-beta4",
+    "multer": "^1.3.0",
     "pug": "^2.0.3",
     "supertest": "^3.1.0"
   }

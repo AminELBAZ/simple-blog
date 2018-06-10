@@ -1,5 +1,36 @@
-doctype html 
-head
-  title XXX
-body
-  Hello world
+extends master.html
+
+block append content
+
+  div(class="container card")
+    if total_articles > 0
+      h1(class="text-center") Liste des livres 
+
+      <div class="row col-md-12">
+        each art in articles
+          <div class="col-md-4">
+            <div class="card text-center">
+              <h2 >#{art.titre}</h2><br/>
+              <p class="border-bottom">#{art.auteur}</p>
+              <a href="/post/edit/#{art._id}"><img class="img img-thumbnail rounded mx-auto d-block img-responsive" src="/uploads/#{art.image}"></a>
+            </div>
+          </div>
+      </div>
+      <input type="hidden" id="nb_pages" value="#{nb_pages}">
+      if total_articles > articles_par_page
+        <div class="text-center">
+          <footer class="page-footer col-md-4 offset-md-4">
+            <nav aria-label="Page navigation example col-md-4">
+              <ul class="pagination">
+                <li class="page-item"><a id="page-previous" class="page-link" href="#">Précédent</a></li>
+                - var i = 1;
+                while i <= nb_pages
+                    <li id="page#{i}" class="page-item"><a class="page-link" href="/#{i}">#{i++}</a></li>
+                <li class="page-item"><a id="page-next" class="page-link" href="#">Suivant</a></li>
+                </ul>
+            </nav>
+          </footer>
+        </div>
+    else
+      p(class="text-center") La base de données est vide, veuillez lancer le script db_fixture.js
+

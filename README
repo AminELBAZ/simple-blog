@@ -1,0 +1,8 @@
+#Déploiement du blog
+
+-Se placer dans le répertoire voulu, puis réaliser un clone du projet.
+-Lancer le script permettant de créer le jeu de données, à l'aide de la commande suivante: `nodejs db_fixture.js`
+-Lancer le server à l'aide de la commande suivante : `nodejs server.js`
+-Lancer une navigateur web puis rendez-vous sur l'url suivante : http://localhost:8000/
+
+Voilà, le blog est fonctionnel. Enjoy :)

@@ -10,13 +10,13 @@ describe("test blog index endpoint", function() {
       .expect("Content-Type", "text/html; charset=utf-8")
       .expect(200)
       .end(done);
-  });
-  it("should have title \"Simple Blog\"", function(done) {
+    });
+    it("should have title \"Blog NoSQL\"", function(done) {
       supertest(app)
       .get("/")
       .set("User-Agent", "API testing")
       .expect(function(res) {
-        assert(res.text.includes("<title>Simple Blog</title>"));
+        assert(res.text.includes("<title>Blog NoSQL</title>"));
       })
       .expect(200)
       .end(done);

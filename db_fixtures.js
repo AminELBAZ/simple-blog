@@ -1,0 +1,26 @@
+var MongoClient = require('mongodb').MongoClient;
+
+var ObjectID = require('mongodb').ObjectID;
+//Connexion à la base de données
+MongoClient.connect("mongodb://localhost:27017",{useNewUrlParser: true}, function(err, client) {
+    if(err) throw err;
+
+    var db = client.db("blog-nosql");
+    console.log("Importation des données...");
+    //Insertion du jeu de données
+    db.collection("articles").insert(
+        [{"_id": new ObjectID("5b1d6189d061ae58ae28c9c9"),"titre":"1984","auteur":"George Orwell","resume":"Quatrième de couverture - « De tous les carrefours importants, le visage à la moustache noire vous fixait du regard. BIG BROTHER VOUS REGARDE, répétait la légende, tandis que le regard des yeux noirs pénétrait les yeux de Winston... Au loin, un hélicoptère glissa entre les toits, plana un moment, telle une mouche bleue, puis repartit comme une flèche, dans un vol courbe. C'était une patrouille qui venait mettre le nez aux fenêtres des gens. Mais les patrouilles n'avaient pas d'importance. Seule comptait la Police de la Pensée. »","image":"1984.jpg"},
+        {"titre":"Fahrenheit 451","auteur":"Ray Bradbury","resume":"Montag est un pompier du futur d'un genre particulier : il brûle les livres. Jusqu'au jour où il se met à en lire, refuse le bonheur obligatoire et rêve d'un monde perdu où la littérature et l'imaginaire ne seraient pas bannis. Devenant du coup un dangereux criminel...","image":"far451.jpg"},
+        {"titre":"Gatsby le Magnifique","auteur":"Francis Scott Fitzgerald","resume":"New York, années folles… Dans sa somptueuse demeure de Long Island, Jay Gatsby organise de fastueuses réceptions où les invités se pressent en foule. Mais leur hôte ne cherche à éblouir qu’une seule personne : Daisy Buchanan. Elle est élégante, riche, séduisante, mais elle est la femme d’un héritier millionnaire… Avec ce texte devenu un classique, Fitzgerald, sur un air de jazz et une coupe de champagne à la main, met à nu le Rêve américain et écrit l’un des plus beaux romans du XXe siècle, ici présenté dans la traduction de référence, par Jacques Tournier. ","image":"Gatsby-le-magnifique.jpg"},
+        {"titre":"Bel-Ami","auteur":"Guy de Maupassant","resume":"Le monde est une mascarade où le succès va de préférence aux crapules. La réussite, les honneurs, les femmes et le pouvoir: le monde n'a guère changé. On rencontre toujours - moins les moustaches - dans les salles de rédaction ou ailleurs, de ces jeunes aventuriers de l'arrivisme et du sexe. Comme Flaubert, mais en riant, Maupassant disait de son personnage, l'odieux Duroy : << Bel-Ami, c'est moi.>> Et pour le cynisme, la fureur sensuelle, l'athéisme, la peur de la mort, ils se ressemblaient assez. Mais Bel-Ami ne savait pas écrire, et devenait l'amant et le négrier d'une femme talentueuse et brillante. Maupassant, lui, était un immense écrivain. Universel, déjà, mais par son réalisme, ses obsessions et ses névroses, encore vivant aujourd'hui.","image":"bel-ami.jpg"},
+        {"titre":"Martin Eden","auteur":"Jack London","resume":"Martin Eden, un marin de vingt ans issu des quartiers pauvres d'Oakland, décide de se cultiver pour faire la conquête d'une jeune bourgeoise. Il se met à écrire, et devient un auteur à succès. Mais l'embourgeoisement ne lui réussit pas... Désabusé, il part pour les îles du Pacifique. Ce magnifique roman paru en 1909, le plus riche et le plus personnel de l'auteur, raconte la découverte d'une vocation, entre exaltation et mélancolie. Car la réussite de l'oeuvre met en péril l'identité de l'écrivain. Comment survivre à la gloire, et l'unir à l'amour, sans se perdre soi-même ? Telle est la quête de Martin Eden, le marin qui désire éperdument la littérature. ","image":"martin.jpg"},
+        {"titre":"L'Idiot","auteur":"Dostoïevski","resume":"Le prince Muichkine arrive à Saint-Pétersbourg. Idiot de naissance parce qu'incapable d'agir, il est infiniment bon. Projeté dans un monde cupide, arriviste et passionnel, il l'illumine de son regard. Par sa générosité, tel le Christ, Léon Nicolaïevitch révélera le meilleur enfoui en chacun. La trop belle Anastasia, achetée cent mille roubles, retrouve la pureté, Gania Yvolguine le sens de l'honneur, et le sanglant Rogojine goûte, un instant, la fraternité. Dostoïevski voulait représenter l'homme positivement bon. Mais que peut-il face aux vices de la société, face à la passion ? Récit admirablement composé, riche en rebondissements extraordinaires, L'Idiot est à l'image de la Sainte Russie, vibrant et démesuré. Manifeste politique et credo de l'auteur, son oeuvre a été et restera un livre phare, car son héros est l'homme tendu vers le bien mais harcelé par le mal.","image":"idiot.jpg"},
+        {"titre":"L'art de la guerre","auteur":"Sun Tzu","resume":"L’Art de la guerre de Sunzi (Ve siècle avant J.-C.) est le premier traité de stratégie connu au monde. Stratège militaire du début de l’époque des Royaumes combattants (475-221 av. J.-C.), l’auteur favorise la stratégie indirecte. Classique du genre, sa compréhension dépasse le domaine militaire et peut être étendue à la plupart des domaines de l’activité humaine.","image":"art-guerre.jpg"}]
+    , function(err, res) {
+      if (err) throw err;
+      console.log("Jeu de données inséré");
+      process.exit();
+    });
+    
+});
+
